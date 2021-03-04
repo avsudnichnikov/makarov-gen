@@ -27,10 +27,9 @@ function randomTask(){
     const needed = randFromArr(taskGenBase.needed);
     const subModule = randFromArr(taskGenBase.subModule);
     const module = randFromArr(taskGenBase.module);
-    const subAction = randFromArr(taskGenBase.subAction);
     const action = randFromArr(taskGenBase.action);
     const subject = randFromArr(taskGenBase.subject);
-    return `${needed} ${subModule} ${module} ${subAction} ${action} ${subject}.`;
+    return `${needed} ${subModule} ${module} ${action} ${subject}.`;
 }
 
 function randomAuthor(){
