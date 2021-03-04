@@ -7,7 +7,7 @@ function intDiv(a, b) {
 }
 
 function addZeros(number, order = 2) {
-    if (order <= 1) return '';
+    if (order <= 1) return '' + number;
     return addZeros(intDiv(number, 10), order - 1) +  number % 10;
 }
 
