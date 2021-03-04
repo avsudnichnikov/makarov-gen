@@ -11,21 +11,21 @@ function addZeros(number, order) {
     return addZeros(intDiv(number, 10), order - 1) + number % 10;
 }
 
-function randFromArr(arr) {
-    return arr[randInt(arr.length - 1)];
+Array.prototype.random = function() {
+    return this[randInt(this.length - 1)];
 }
 
 function randomTask() {
-    const needed = randFromArr(taskGenBase.needed);
-    const subModule = randFromArr(taskGenBase.subModule);
-    const module = randFromArr(taskGenBase.module);
-    const action = randFromArr(taskGenBase.action);
-    const subject = randFromArr(taskGenBase.subject);
+    const needed = taskGenBase.needed.random();
+    const subModule = taskGenBase.subModule.random();
+    const module = taskGenBase.module.random();
+    const action = taskGenBase.action.random();
+    const subject = taskGenBase.subject.random();
     return `${needed} ${subModule} ${module} ${action} ${subject}.`;
 }
 
 function randomAuthor() {
-    const author = randFromArr(authorGenBase.authors);
+    const author = authorGenBase.authors.random();
     const now = new Date();
     let date = addZeros(now.getHours(), 2);
     date += ':' + addZeros(now.getMinutes(), 2);
@@ -43,7 +43,7 @@ function taskFill() {
     task.innerHTML = randomTask();
 
     const message = document.createElement('div');
-    message.className = `message is-${randFromArr(authorGenBase.colors)}`;
+    message.className = `message is-${authorGenBase.colors.random()}`;
 
     message.append(author);
     message.append(task);
