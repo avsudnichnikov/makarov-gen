@@ -11,7 +11,7 @@ function addZeros(number, order) {
     return addZeros(intDiv(number, 10), order - 1) + number % 10;
 }
 
-Array.prototype.random = function() {
+Array.prototype.random = function () {
     return this[randInt(this.length - 1)];
 }
 
@@ -27,10 +27,10 @@ function randomTask() {
 function randomAuthor() {
     const author = authorGenBase.authors.random();
     const now = new Date();
-    let date = addZeros(now.getHours(), 2);
-    date += ':' + addZeros(now.getMinutes(), 2);
-    date += ':' + addZeros(now.getSeconds(), 2);
-    return `${author} ${date}`;
+    const hours = addZeros(now.getHours(), 2);
+    const minutes = addZeros(now.getMinutes(), 2);
+    const seconds = addZeros(now.getSeconds(), 2);
+    return `${author} ${hours}:${minutes}:${seconds}`;
 }
 
 function taskFill() {
