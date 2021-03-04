@@ -7,16 +7,8 @@ function intDiv(a, b) {
 }
 
 function addZeros(number, order = 2) {
-    if (order <= 1) return '' + number || '';
-
-    const thisDigit = number % 10;
-    const nextNumber = intDiv(number, 10);
-
-    if (thisDigit > 0) {
-        return addZeros(nextNumber, order - 1) + thisDigit;
-    }
-
-    return '0' + addZeros(nextNumber, order - 1);
+    if (order <= 1) return '';
+    return addZeros(intDiv(number, 10), order - 1) +  number % 10;
 }
 
 function randFromArr(arr) {
