@@ -6,9 +6,9 @@ function intDiv(a, b) {
     return (a - a % b) / b;
 }
 
-function addZeros(number, order = 2) {
+function addZeros(number, order) {
     if (order <= 1) return '' + number;
-    return addZeros(intDiv(number, 10), order - 1) +  number % 10;
+    return addZeros(intDiv(number, 10), order - 1) + number % 10;
 }
 
 function randFromArr(arr) {
@@ -27,7 +27,9 @@ function randomTask() {
 function randomAuthor() {
     const author = randFromArr(authorGenBase.authors);
     const now = new Date();
-    const date = addZeros(now.getHours()) + ':' + addZeros(now.getMinutes()) + ':' + addZeros(now.getSeconds());
+    let date = addZeros(now.getHours(), 2);
+    date += ':' + addZeros(now.getMinutes(), 2);
+    date += ':' + addZeros(now.getSeconds(), 2);
     return `${author} ${date}`;
 }
 
