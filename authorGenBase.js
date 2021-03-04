@@ -5,9 +5,9 @@ const authorGenBase = {
         'Eugeny',
     ],
     colors: [
-        'red',
-        'green',
-        'purple',
-        'blue',
+        'link',
+        'primary',
+        'warning',
+        'success',
     ],
 }

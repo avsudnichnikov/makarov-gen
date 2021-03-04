@@ -12,7 +12,7 @@ function addZeros(number, order = 2) {
     const thisDigit = number % 10;
     const nextNumber = intDiv(number, 10);
 
-    if (thisDigit > 0){
+    if (thisDigit > 0) {
         return addZeros(nextNumber, order - 1) + thisDigit;
     }
 
@@ -23,7 +23,7 @@ function randFromArr(arr) {
     return arr[randInt(arr.length - 1)];
 }
 
-function randomTask(){
+function randomTask() {
     const needed = randFromArr(taskGenBase.needed);
     const subModule = randFromArr(taskGenBase.subModule);
     const module = randFromArr(taskGenBase.module);
@@ -32,23 +32,34 @@ function randomTask(){
     return `${needed} ${subModule} ${module} ${action} ${subject}.`;
 }
 
-function randomAuthor(){
+function randomAuthor() {
     const author = randFromArr(authorGenBase.authors);
-    const color = randFromArr(authorGenBase.colors);
-    const date = addZeros(randInt(24, 1)) + ':' + addZeros(randInt(59)) + ':' + addZeros(randInt(59));
-    return `<strong style="color: ${color}">${author} ${date}</strong>`;
+    const now = new Date();
+    const date = addZeros(now.getHours()) + ':' + addZeros(now.getMinutes()) + ':' + addZeros(now.getSeconds());
+    return `${author} ${date}`;
 }
 
-function taskFill(task, author){
+function taskFill() {
+    const author = document.createElement('div');
+    author.className = 'message-header';
+    author.innerText = randomAuthor();
+
+    const task = document.createElement('div');
+    task.className = 'message-body';
     task.innerHTML = randomTask();
-    author.innerHTML = randomAuthor();
+
+    const message = document.createElement('div');
+    message.className = `message is-${randFromArr(authorGenBase.colors)}`;
+
+    message.append(author);
+    message.append(task);
+
+    document.querySelector('#messages').prepend(message);
+
+    setTimeout(taskFill, randInt(1, 5) * 1000)
 }
 
 window.addEventListener('load', () => {
-    const task = document.querySelector('#task-field');
-    const author = document.querySelector('#author-field');
-
-    taskFill(task, author);
-    document.querySelector('#task-gen').addEventListener('click', () => taskFill(task, author));
+    taskFill();
 })
 
