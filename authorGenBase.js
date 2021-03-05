@@ -1,7 +1,7 @@
 const authorGenBase = {
     authors: [
         'Мария',
-        'Dmitrii',
+        'Dmitry',
         'Eugeny',
     ],
     colors: [
